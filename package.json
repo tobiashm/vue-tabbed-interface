@@ -1,0 +1,33 @@
+{
+  "name": "vue-tabbed-interface",
+  "version": "1.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue-tabbed-interface.umd.js",
+  "module": "./dist/vue-tabbed-interface.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-tabbed-interface.es.js",
+      "require": "./dist/vue-tabbed-interface.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "vue": "^3.2",
+    "vue-router": "^4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9",
+    "vite-plugin-dts": "^1.2.1",
+    "vue": "^3.2.25",
+    "vue-router": "^4.1.0",
+    "vue-tsc": "^0.38.2"
+  }
+}
