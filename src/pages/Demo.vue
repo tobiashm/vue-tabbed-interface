@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import { TabbedInterface, TabList, Tab, TabPanel } from '../lib';
+import { computed } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
+import { useTabbedInterface, TabList, Tab, TabPanel } from '../lib';
+
+const router = useRouter();
+
+useTabbedInterface({
+  selectedTab: () => String(router.currentRoute.value.query.tab ?? 'a'),
+  onTabSelected(tab: string) {
+    router.push({ query: { ...router.currentRoute.value.query, tab } });
+  }
+});
 </script>
 
 <template>
-  <TabbedInterface default-tab="a">
+  <div>
     <TabList>
       <Tab name="a">A</Tab>
       <Tab name="b">B</Tab>
     </TabList>
     <TabPanel tab="a">Hello darkness my old friend</TabPanel>
     <TabPanel tab="b">I’ve come to talk with you again</TabPanel>
-  </TabbedInterface>
+  </div>
 </template>
 
 <style>

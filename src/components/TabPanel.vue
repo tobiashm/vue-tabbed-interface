@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTabbedInterface } from './TabbedInterface.vue';
+import { useTabbedInterface } from '../composables/TabbedInterface';
 
 defineProps<{
   tab: string;

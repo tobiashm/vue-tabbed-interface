@@ -7,24 +7,24 @@ export default defineConfig({
   plugins: [
     vue(),
     dts({
-      include: ['src/components/*.vue', 'src/lib.ts'],
+      include: ['src/components/*.vue', 'src/composables/*.ts', 'src/lib.ts'],
       outputDir: 'dist',
-      rollupTypes: true
-    })
+      rollupTypes: true,
+    }),
   ],
   build: {
     lib: {
       entry: 'src/lib.ts',
-      name: 'TabbedInterface'
+      name: 'TabbedInterface',
     },
     rollupOptions: {
       external: ['vue', 'vue-router'],
       output: {
         globals: {
           vue: 'Vue',
-          'vue-router': 'VueRouter'
-        }
-      }
-    }
-  }
+          'vue-router': 'VueRouter',
+        },
+      },
+    },
+  },
 });

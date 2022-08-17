@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useTabbedInterface } from './TabbedInterface.vue';
+import { useTabbedInterface } from '../composables/TabbedInterface';
 
 defineProps<{
   name: string;
