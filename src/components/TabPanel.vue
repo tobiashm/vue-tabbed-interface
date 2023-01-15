@@ -3,13 +3,15 @@ import { useTabbedInterface } from '../composables/TabbedInterface';
 
 defineProps<{
   tab: string;
+  tag?: string;
 }>();
 
 const { isSelected } = useTabbedInterface();
 </script>
 
 <template>
-  <section
+  <component
+    :is="tag || 'section'"
     :id="`tab-panel-${tab}`"
     :hidden="!isSelected(tab)"
     role="tabpanel"
@@ -17,5 +19,5 @@ const { isSelected } = useTabbedInterface();
     :aria-labelledby="`tab-${tab}`"
   >
     <slot></slot>
-  </section>
+  </component>
 </template>

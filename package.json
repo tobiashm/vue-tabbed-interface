@@ -1,18 +1,19 @@
 {
   "name": "vue-tabbed-interface",
   "description": "A simple component for building tabbed interfaces",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "repository":  "github:tobiashm/vue-tabbed-interface",
+  "type": "module",
   "files": [
     "dist"
   ],
   "main": "./dist/vue-tabbed-interface.umd.js",
-  "module": "./dist/vue-tabbed-interface.es.js",
+  "module": "./dist/vue-tabbed-interface.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-tabbed-interface.es.js",
-      "require": "./dist/vue-tabbed-interface.umd.js"
+      "import": "./dist/vue-tabbed-interface.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "types": "./dist/index.d.ts",
@@ -25,12 +26,12 @@
     "vue": "^3.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "typescript": "^4.5.4",
-    "vite": "^2.9.9",
-    "vite-plugin-dts": "^1.2.1",
-    "vue": "^3.2.25",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "typescript": "^4.9.0",
+    "vite": "^4.0.0",
+    "vite-plugin-dts": "^1.7.0",
+    "vue": "^3.2.0",
     "vue-router": "^4.1.0",
-    "vue-tsc": "^0.38.2"
+    "vue-tsc": "^1.0.0"
   }
 }

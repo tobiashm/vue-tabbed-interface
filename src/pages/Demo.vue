@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
 import { useTabbedInterface, TabList, Tab, TabPanel } from '../lib';
 

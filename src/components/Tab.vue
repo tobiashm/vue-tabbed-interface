@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useTabbedInterface } from '../composables/TabbedInterface';
 
-defineProps<{
+const props = defineProps<{
   name: string;
 }>();
 
 const { isSelected, selectTab } = useTabbedInterface();
-
-const button = ref<HTMLButtonElement>();
 
 function focusTab(tab: Element | null | undefined) {
   if (tab instanceof HTMLElement && tab.getAttribute('role') === 'tab') {
@@ -16,34 +13,38 @@ function focusTab(tab: Element | null | undefined) {
   }
 }
 
+function clickEventListener() {
+  if (!isSelected(props.name)) {
+    selectTab(props.name);
+  }
+}
+
 /**
- * Understøt navigation med piletaster og Home/End, som beskrevet her:
+ * Support keyboard navigation with arrows and Home/End, as described here:
  * https://www.w3.org/TR/wai-aria-practices/#keyboard-interaction-21
  */
 function keydownEventListener(event: KeyboardEvent) {
-  if (!button.value) return;
+  const button = event.target as HTMLButtonElement;
   switch (event.key) {
     case 'ArrowLeft':
       event.preventDefault();
       focusTab(
-        button.value.previousElementSibling ??
-          button.value.parentElement?.lastElementChild
+        button.previousElementSibling ?? button.parentElement?.lastElementChild
       );
       break;
     case 'ArrowRight':
       event.preventDefault();
       focusTab(
-        button.value.nextElementSibling ??
-          button.value.parentElement?.firstElementChild
+        button.nextElementSibling ?? button.parentElement?.firstElementChild
       );
       break;
     case 'Home':
       event.preventDefault();
-      focusTab(button.value.parentElement?.firstElementChild);
+      focusTab(button.parentElement?.firstElementChild);
       break;
     case 'End':
       event.preventDefault();
-      focusTab(button.value.parentElement?.lastElementChild);
+      focusTab(button.parentElement?.lastElementChild);
       break;
   }
 }
@@ -52,12 +53,11 @@ function keydownEventListener(event: KeyboardEvent) {
 <template>
   <button
     :id="`tab-${name}`"
-    ref="button"
     role="tab"
     :aria-selected="isSelected(name)"
     :aria-controls="`tab-panel-${name}`"
     :tabindex="isSelected(name) ? undefined : -1"
-    @click="selectTab(name)"
+    @click="clickEventListener"
     @keydown="keydownEventListener"
   >
     <slot></slot>
